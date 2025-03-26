@@ -3,31 +3,19 @@
 ## Project setup
 
 ```bash
-$ npm install
+npm install
 ```
 
 ## Compile and run the project
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run start:dev
 ```
 
-## Run tests
-
+## Run migrations
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npx prisma migrate deploy
+```
+```bash
+npm run db:seed
 ```
