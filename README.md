@@ -19,3 +19,8 @@ npx prisma migrate deploy
 ```bash
 npm run db:seed
 ```
+
+## Visit GraphQL playground
+```bash
+http://localhost:3001/graphql
+```
