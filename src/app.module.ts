@@ -6,7 +6,11 @@ import { PrismaModule } from './prisma/prisma.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { PostModule } from './post/post.module';
+import { PostModule } from './modules/post/post.module';
+import { UserModule } from './modules/user/user.module';
+import { CommentModule } from './modules/comment/comment.module';
+import { TagModule } from './modules/tag/tag.module';
+import { LikeModule } from './modules/like/like.module';
 
 @Module({
   imports: [
@@ -17,6 +21,10 @@ import { PostModule } from './post/post.module';
     }),
     PrismaModule,
     PostModule,
+    UserModule,
+    CommentModule,
+    TagModule,
+    LikeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

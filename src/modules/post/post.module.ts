@@ -3,8 +3,5 @@ import { PostService } from './post.service';
 import { PostResolver } from './post.resolver';
 import { PrismaService } from '@/prisma/prisma.service';
 
-@Module({
-  providers: [PostResolver, PostService, PrismaService],
-})
-
+@Module({ providers: [PostResolver, PostService, PrismaService], })
 export class PostModule {}
