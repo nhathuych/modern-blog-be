@@ -13,7 +13,14 @@ enum SqlColor {
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
   constructor() {
-    super({ log: [{ emit: 'event', level: 'query' }] });
+    super({
+      log: [
+        "error",
+        "info",
+        "warn",
+        { emit: "event", level: "query" },
+      ],
+    });
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
