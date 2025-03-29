@@ -46,12 +46,20 @@ type Post {
   tags: [Tag!]
 }
 
+type SignInResponse {
+  id: Float!
+  name: String!
+  email: String!
+  avatar: String
+  accessToken: String!
+}
+
 type Query {
   posts: [Post!]!
 }
 
 type Mutation {
-  signIn(signInInput: SignInInput!): String!
+  signIn(signInInput: SignInInput!): SignInResponse!
   createUser(createUserInput: CreateUserInput!): User!
 }
 
