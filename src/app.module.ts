@@ -11,6 +11,7 @@ import { UserModule } from './modules/user/user.module';
 import { CommentModule } from './modules/comment/comment.module';
 import { TagModule } from './modules/tag/tag.module';
 import { LikeModule } from './modules/like/like.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { LikeModule } from './modules/like/like.module';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), "src/graphql/schema.gql")
     }),
+    AuthModule,
     PrismaModule,
     PostModule,
     UserModule,
