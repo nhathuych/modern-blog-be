@@ -14,4 +14,8 @@ export class PostService {
   count() {
     return this.prisma.post.count();
   }
+
+  findOne(id: number) {
+    return this.prisma.post.findUnique({ where: { id }, });
+  }
 }
