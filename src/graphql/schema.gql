@@ -57,6 +57,7 @@ type SignInResponse {
 type Query {
   posts(skip: Float, take: Float): [Post!]!
   postCount: Int!
+  findPostById(id: Int!): Post!
 }
 
 type Mutation {

@@ -1,6 +1,7 @@
-import { Resolver, Query, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Args, Int, Info } from '@nestjs/graphql';
 import { PostService } from './post.service';
 import { Post } from './entities/post.entity';
+import { GraphQLResolveInfo } from 'graphql/type/definition';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -17,5 +18,13 @@ export class PostResolver {
   @Query(() => Int, { name: 'postCount' })
   postCount() {
     return this.postService.count();
+  }
+
+  @Query(() => Post)
+  findPostById(
+    @Args('id', { type: () => Int }) id: number,
+    @Info() info: GraphQLResolveInfo,
+  ) {
+    return this.postService.findOne(id, info)
   }
 }
