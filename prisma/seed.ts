@@ -27,7 +27,7 @@ async function main() {
       title,
       slug,
       content: faker.lorem.paragraphs(3),
-      thumbnail: faker.image.urlLoremFlickr(),
+      thumbnail: faker.image.urlPicsumPhotos({ width: 640, height: 480, grayscale: false, blur: 0 }),
       published: true,
       userId: faker.number.int({ min: 1, max: 10 }),
     }
