@@ -29,6 +29,9 @@ export class Post {
   @Field()
   updatedAt: Date;
 
+  @Field()
+  userId: number;
+
   @Field(() => User)
   user: User;
 
