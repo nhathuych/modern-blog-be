@@ -4,9 +4,9 @@ import { AuthResolver } from './auth.resolver';
 import { PrismaService } from '@/prisma/prisma.service';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtStrategy } from './passport/jwt.strategy';
 import { GoogleStrategy } from './passport/strategies/google.strategy';
 import { GoogleOAuthController } from './google-oauth.controller';
+import { JwtStrategy } from './passport/strategies/jwt.strategy';
 
 @Module({
   imports: [

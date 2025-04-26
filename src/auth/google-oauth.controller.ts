@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards, Request, Response } from '@nestjs/common';
 import { GoogleOAuthGuard } from './passport/guards/google-oauth/google-oauth.guard';
 import { AuthService } from './auth.service';
-import { JwtAuthGuard } from './passport/jwt-auth.guard';
+import { JwtAuthGuard } from './passport/guards/jwt-auth/jwt-auth.guard';
 
 @Controller('auth')
 export class GoogleOAuthController {
