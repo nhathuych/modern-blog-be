@@ -59,11 +59,14 @@ type Query {
   posts(skip: Float, take: Float): [Post!]!
   postCount: Int!
   findPostById(id: Int!): Post!
+  getCommentsByPost(postId: Int!, take: Int = 12, skip: Int = 0): [Comment!]!
+  getTotalByPost(postId: Int!): Int!
 }
 
 type Mutation {
   signIn(signInInput: SignInInput!): SignInResponse!
   createUser(createUserInput: CreateUserInput!): User!
+  createComment(createCommentInput: CreateCommentInput!): Comment!
 }
 
 input SignInInput {
@@ -77,4 +80,9 @@ input CreateUserInput {
   email: String!
   bio: String
   avatar: String
+}
+
+input CreateCommentInput {
+  postId: Int!
+  content: String!
 }
