@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { CreateLikeInput } from './dto/create-like.input';
-import { UpdateLikeInput } from './dto/update-like.input';
+import { PrismaService } from '@/prisma/prisma.service';
 
 @Injectable()
 export class LikeService {
-  create(createLikeInput: CreateLikeInput) {
-    return 'This action adds a new like';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async likePost(userId: number, postId: number) {
+    try {
+      await this.prisma.like.create({ data: { userId, postId }, });
+    } catch (error) {
+      if (error.code === 'P2002') return true; // ignore duplicate key error
+      throw error;
+    }
+
+    return true;
   }
 
-  findAll() {
-    return `This action returns all like`;
+  async unlikePost(userId: number, postId: number) {
+    const result = await this.prisma.like.deleteMany({ where: { userId, postId } });
+    return result.count > 0;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} like`;
+  getPostLikes(postId: number) {
+    return this.prisma.like.count({ where: { postId } });
   }
 
-  update(id: number, updateLikeInput: UpdateLikeInput) {
-    return `This action updates a #${id} like`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} like`;
+  async isUserLikedPost(userId: number, postId: number) {
+    const like = await this.prisma.like.findUnique({ where: { userId_postId: { userId, postId } } });
+    return !!like;
   }
 }
