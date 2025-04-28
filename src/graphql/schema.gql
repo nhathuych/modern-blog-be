@@ -32,6 +32,11 @@ type Tag {
   posts: [Post!]!
 }
 
+type Count {
+  likes: Int!
+  comments: Int!
+}
+
 type Post {
   id: Int!
   title: String!
@@ -45,6 +50,7 @@ type Post {
   user: User!
   comments: [Comment!]
   tags: [Tag!]
+  _count: Count
 }
 
 type SignInResponse {
@@ -59,6 +65,8 @@ type Query {
   posts(skip: Float, take: Float): [Post!]!
   postCount: Int!
   findPostById(id: Int!): Post!
+  getUserPosts(skip: Int, take: Int): [Post!]!
+  getUserPostCount: Int!
   getCommentsByPost(postId: Int!, take: Int = 12, skip: Int = 0): [Comment!]!
   getTotalByPost(postId: Int!): Int!
   getPostLikes(postId: Int!): Float!
@@ -67,6 +75,9 @@ type Query {
 
 type Mutation {
   signIn(signInInput: SignInInput!): SignInResponse!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  deletePost(id: Int!): Boolean!
   createUser(createUserInput: CreateUserInput!): User!
   createComment(createCommentInput: CreateCommentInput!): Comment!
   likePost(postId: Int!): Boolean!
@@ -76,6 +87,23 @@ type Mutation {
 input SignInInput {
   email: String!
   password: String!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+  thumbnail: String
+  published: Boolean!
+  tags: [String!]!
+}
+
+input UpdatePostInput {
+  title: String
+  content: String
+  thumbnail: String
+  published: Boolean
+  tags: [String!]
+  id: Int!
 }
 
 input CreateUserInput {

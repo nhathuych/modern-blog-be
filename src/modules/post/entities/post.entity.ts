@@ -4,6 +4,15 @@ import { User } from '@/modules/user/entities/user.entity';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
+export class Count {
+  @Field(() => Int)
+  likes: number;
+
+  @Field(() => Int)
+  comments: number;
+}
+
+@ObjectType()
 export class Post {
   @Field(() => Int)
   id: number;
@@ -40,4 +49,7 @@ export class Post {
 
   @Field(() => [Tag], { nullable: true })
   tags: Tag[];
+
+  @Field(() => Count, { nullable: true })
+  _count: Count;
 }
